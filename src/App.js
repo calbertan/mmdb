@@ -1,24 +1,28 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import Header from './components/Header';
+import Add from "./pages/Add"
+import Read from "./pages/Read"
+import Readlist from "./pages/Readlist"
 
 function App() {
+  let component
+  switch (window.location.pathname) {
+    case "/":
+      component = <Readlist/>
+      break
+    case "/read":
+      component = <Read/>
+      break
+    case "/add":
+      component = <Add/>
+      break
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      <Header/>
+      {component}
+    </React.Fragment>
   );
 }
 
