@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import './App.css';
 import Header from './components/Header';
 import Add from "./pages/Add"
-import Read from "./pages/Read"
+import Completed from "./pages/Completed"
 import Readlist from "./pages/Readlist"
+
+import {GlobalProvider} from './context/GlobalState'
 
 function App() {
   const [] = useState()
@@ -12,18 +13,20 @@ function App() {
     case "/":
       component = <Readlist/>
       break
-    case "/read":
-      component = <Read/>
+    case "/completed":
+      component = <Completed/>
       break
     case "/add":
       component = <Add/>
       break
   }
   return (
-    <React.Fragment>
-      <Header/>
-      {component}
-    </React.Fragment>
+    <GlobalProvider>
+      <React.Fragment>
+        <Header/>
+        {component}
+      </React.Fragment>
+    </GlobalProvider>
   );
 }
 

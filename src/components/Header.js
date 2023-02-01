@@ -1,6 +1,6 @@
 import {FaBars, FaTimes} from "react-icons/fa"
 import {useRef} from "react"
-import "../Styles/header.css"
+import "../Styles/header.scss"
 
 function Header(){
     const navRef = useRef();
@@ -12,17 +12,19 @@ function Header(){
     return (
         <header>
             <h3>mmdb</h3>
-            <nav ref={navRef}>
-                <a href="/">Read List</a>
-                <a href="/read">Read</a>
-                <a href="/add">+ Add</a>
-                <button className="nav-btn nav-close-btn" onClick={showHeader}>
-                    <FaTimes></FaTimes>
+            <div className="header-right">
+                <nav ref={navRef}>
+                    <a href="/">Read List</a>
+                    <a href="/completed">Completed</a>
+                    <a href="/add">+ Add</a>
+                    <button className="nav-btn nav-close-btn" onClick={showHeader}>
+                        <FaTimes></FaTimes>
+                    </button>
+                </nav>
+                <button className="nav-btn" onClick={showHeader}>
+                    <FaBars></FaBars>
                 </button>
-            </nav>
-            <button className="nav-btn" onClick={showHeader}>
-                <FaBars></FaBars>
-            </button>
+            </div>
         </header>
     )
 }

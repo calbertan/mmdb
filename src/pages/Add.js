@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import ResultCard from '../components/ResultCard'
+import "../Styles/add.scss"
+import "../Styles/resultcard.scss"
 
 const Add = () => {
   const [query, setQuery] = useState("")
@@ -10,7 +12,7 @@ const Add = () => {
     fetch(`https://api.jikan.moe/v4/manga?q=${search}&order_by=members&sort=desc&limit=20`)
       .then((res) => res.json())
       .then((info) => {
-        if(search != "")
+        if(search !== "")
           console.log(info.data)
           setResults(info.data)
       })
