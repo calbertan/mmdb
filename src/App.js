@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import Header from './components/Header';
 import Add from "./pages/Add"
@@ -6,6 +6,7 @@ import Read from "./pages/Read"
 import Readlist from "./pages/Readlist"
 
 function App() {
+  const [] = useState()
   let component
   switch (window.location.pathname) {
     case "/":
