@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import ResultCard from '../components/ResultCard'
 import "../Styles/add.scss"
-import "../Styles/resultcard.scss"
+import "../Styles/entrycard.scss"
 
 const Add = () => {
   const [query, setQuery] = useState("")
@@ -19,21 +19,9 @@ const Add = () => {
   }, [search]);
 
   useEffect(() => {
-    const timeOutId = setTimeout(() => setSearch(query), 2000);
+    const timeOutId = setTimeout(() => setSearch(query), 1500); //sets *search to *query after a certain delay
     return () => clearTimeout(timeOutId);
   }, [query])
-  
-  // const onChange = e => {
-  //   e.preventDefault();
-
-  //   setQuery(e.target.value);
-
-  //   fetch(`https://api.jikan.moe/v4/manga?q=${e.target.value}&order_by=title&sort=asc&limit=10`)
-  //   .then((res) => res.json())
-  //   .then((data) => {
-  //     console.log(data);
-  //   })
-  // }
   
   return (
     <div className='add-page'>
@@ -46,14 +34,15 @@ const Add = () => {
             value={query}
             onChange={event => setQuery(event.target.value)}/>
           </div>
-          
+        </div>
+        <div className='add-grid'>
           {results.length > 0 && (
-            <ul className="results">
-              {results.map((manga)=>(
-                <ResultCard manga={manga} key={manga.mal_id}/>
-              ))}
-            </ul>
-          )}
+              <ul className="results">
+                {results.map((manga)=>(
+                  <ResultCard manga={manga} key={manga.mal_id}/>
+                ))}
+              </ul>
+            )}
         </div>
       </div>
     </div>

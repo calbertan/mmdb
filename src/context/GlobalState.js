@@ -1,10 +1,12 @@
 import React, {createContext, useReducer, useEffect} from 'react'
 import AppReducer from "./AppReducer"
 
-//initial state
+//initial state is set to localstorage if its not empty, set to [] otherwise
 const initialState = {
-    readlist: [],
-    completed: [],
+    readlist: localStorage.getItem('readlist') 
+    ? JSON.parse(localStorage.getItem('readlist')) : [],
+    completed: localStorage.getItem('completed') 
+    ? JSON.parse(localStorage.getItem('completed')) : [],
 };
 
 //create context
@@ -13,6 +15,12 @@ export const GlobalContext = createContext(initialState);
 //provide components
 export const GlobalProvider = props => {
     const [state, dispatch] = useReducer(AppReducer, initialState);
+
+    //Triggered when state is changed in provider (item is added)
+    useEffect(() => {
+        localStorage.setItem('readlist', JSON.stringify(state.readlist));
+        localStorage.setItem('completed', JSON.stringify(state.completed));
+    }, [state]);
 
     //actions
     const addToReadlist = manga => {

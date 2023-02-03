@@ -1,9 +1,28 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import EntryCard from '../components/EntryCard';
+import { GlobalContext } from '../context/GlobalState'
 
 const Readlist = () => {
+  const {readlist} = useContext(GlobalContext);
   return (
-    <div>
-      <h1>Readlist page</h1>
+    <div className='read-page'>
+      <div className='container'>
+        <div className='header'>
+          <h1 className='heading'>My Reading List</h1>
+        </div>
+        {readlist.length > 0 ? (
+          <div className='reading-grid'>
+            <ul className="results">
+              {readlist.map((manga)=>(
+                <EntryCard manga={manga} type={"readinglist"}/>
+              ))}
+            </ul>
+          </div>
+        ) : (
+          <h2 className="no-entries">Your reading list is empty</h2>
+        )}
+        
+      </div>
     </div>
   )
 }

@@ -1,4 +1,4 @@
-.result-card {
+.result-card, .entry-card{
     flex: 1 1 33.333%;
     max-width: 250px;
     padding: 16px 8px;
@@ -21,12 +21,15 @@
 
             transition: 0.4s;
         }
+
     }
 
     h3 {
         color: #313131;
     }
+}
 
+.result-card{
     &:hover {
         figure {
             img {
@@ -35,4 +38,20 @@
             }
         }
     }
+}
+
+.entry-card{
+    figure{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+
+.inner-card-controls{
+    margin-left: 78px;
+}
+
+.ctrl-btn{
+    padding: 12px;
 }
