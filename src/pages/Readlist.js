@@ -15,7 +15,7 @@ const Readlist = () => {
           <div className='reading-grid'>
             <ul className="results">
               {readlist.map((manga)=>(
-                <EntryCard manga={manga} type={"readinglist"}/>
+                <EntryCard manga={manga} type={"readinglist"} key={manga.mal_id}/>
               ))}
             </ul>
           </div>
