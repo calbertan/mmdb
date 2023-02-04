@@ -1,17 +1,19 @@
-import React from 'react'
+import React, {useContext}  from 'react';
+import { GlobalContext } from '../context/GlobalState';
+import Button from 'react-bootstrap/Button';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const EntryControls = ({manga, type}) => {
+  const {removeFromReadlist, completedReading} = useContext(GlobalContext);
   return (
     <div>
       <div className='inner-card-controls'>
         {type == 'readinglist' && (
             <>
-                <button className="ctrl-btn">
-                    <i className='fa-fw far fa-eye'></i>
-                </button>
-                <button className="ctrl-btn">
-                    <i className='fa-fw far fa-times'></i>
-                </button>
+                <Button variant="outline-success" 
+                onClick={()=>completedReading(manga)}>Done</Button>{' '}
+                <Button variant="outline-danger"
+                onClick={()=>removeFromReadlist(manga.mal_id)}>Drop</Button>{' '}
             </>
         )}
       </div>

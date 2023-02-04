@@ -27,11 +27,21 @@ export const GlobalProvider = props => {
         dispatch({type:"ADD_TO_READLIST", payload:manga});
     };
 
+    const removeFromReadlist = id =>{
+        dispatch({type:"REMOVE_FROM_READLIST", payload:id})
+    };
+
+    const completedReading = manga =>{
+        dispatch({type:"COMPLETED_READING", payload:manga})
+    };
+
     return(
         <GlobalContext.Provider value={
             {readlist:state.readlist, 
             completed: state.completed,
             addToReadlist: addToReadlist,
+            removeFromReadlist:removeFromReadlist,
+            completedReading:completedReading
             }}>
             {/*wraps all elements so global context can be accessed by other components */}
             {props.children}    

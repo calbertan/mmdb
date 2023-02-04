@@ -5,15 +5,14 @@ import EntryControls from './EntryControls'
 const EntryCard = ({manga, type}) => {
     return (
         <div className="entry-card">
-            <a>
-                <figure>
+            <div className="container">
+                <div className="poster">
                     <img src={manga.images.jpg.image_url} 
                      alt="poster image"/>
-                    <EntryControls type={type} manga={manga}/>
-                </figure>
+                    <EntryControls type={type} manga={manga} key={manga.mal_id}/>
+                </div>
                 <h3>{manga.title}</h3>
-            </a>
-
+            </div>
         </div>
     )
 }

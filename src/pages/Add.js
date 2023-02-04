@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import ResultCard from '../components/ResultCard'
 import "../Styles/add.scss"
-import "../Styles/entrycard.scss"
 
 const Add = () => {
   const [query, setQuery] = useState("")
