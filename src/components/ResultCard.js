@@ -2,7 +2,7 @@ import React, {useContext} from 'react'
 import {GlobalContext} from '../context/GlobalState'
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Completed from '../pages/Completed';
+import "../Styles/resultcard.scss"
 
 const ResultCard = ({manga}) => {
     const{ addToReadlist, readlist, completed }= useContext(GlobalContext);
@@ -14,17 +14,18 @@ const ResultCard = ({manga}) => {
         <div className="result-card">
             <div className="container">
                 <div className="poster">
-                    <img src={manga.images.jpg.image_url} 
-                     alt="poster image"
-                     onClick={(e)=>{this.handleRefresh(e)}}/>
+                    <img src={manga.images.jpg.image_url}/>
                 </div>
-                <h3>{manga.title}</h3>
-                <Button 
-                 className='btn'
-                 disabled={readlistDisabled}
-                 onClick={()=>addToReadlist(manga)}>
-                    Add to List
-                </Button>
+                <div className='info'>
+                    <h3 className='title'>{manga.title}</h3>
+                    <div className="overflow-auto">{manga.synopsis}</div>
+                    <Button 
+                    className='btn'
+                    disabled={readlistDisabled}
+                    onClick={()=>addToReadlist(manga)}>
+                        Add to List
+                    </Button>
+                </div>
             </div>
         </div>
     )

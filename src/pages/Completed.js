@@ -9,6 +9,7 @@ const Completed = () => {
       <div className='container'>
         <div className='header'>
           <h1 className='heading'>Completed Series</h1>
+          <span className='count-pill'>{completed.length} Series Completed</span>
         </div>
         {completed.length > 0 ? (
           <div className='reading-grid'>

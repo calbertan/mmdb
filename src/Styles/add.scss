@@ -5,9 +5,9 @@
     --textColor:#eee;
 }
 
-.results{
+.container{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
 }
@@ -16,12 +16,12 @@ div > ul{
     margin-top: 1rem;
 }
 
-.add-content .input-wrapper{
+.input-wrapper{
     text-align: center;
     padding: 1.5rem;
 }
 
-.add-content .input-wrapper input {
+input {
     width: 80%;
     max-width: 1000px;
     padding: 10px;
