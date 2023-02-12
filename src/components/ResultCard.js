@@ -17,7 +17,7 @@ const ResultCard = ({manga}) => {
                     <img src={manga.images.jpg.image_url}/>
                 </div>
                 <div className='info'>
-                    <h3 className='title'>{manga.title}</h3>
+                    <div className='title'>{manga.title}</div>
                     <div className="overflow-auto">{manga.synopsis}</div>
                     <Button 
                     className='btn'

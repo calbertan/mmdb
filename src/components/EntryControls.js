@@ -8,7 +8,7 @@ const EntryControls = ({manga, type}) => {
   return (
     <div>
       <div className='inner-card-controls'>
-        {type == 'readinglist' && (
+        {type === 'readinglist' && (
             <>
               <Button variant="outline-success" 
               onClick={()=>completedReading(manga)}>Done</Button>{' '}
@@ -17,7 +17,7 @@ const EntryControls = ({manga, type}) => {
             </>
         )}
  
-        {type == 'completed' && (
+        {type === 'completed' && (
             <>
               <Button variant="outline-secondary"
               onClick={()=>moveToReadlist(manga)}>Move</Button>{' '}

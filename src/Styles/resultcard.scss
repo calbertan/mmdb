@@ -37,3 +37,14 @@
 .info{
     margin:5px;
 }
+
+.title{
+    color:#29335C;
+    font-weight: bold;
+    display: -webkit-box;
+    max-width: 200px;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
