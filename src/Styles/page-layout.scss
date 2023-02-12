@@ -1,0 +1,14 @@
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .count-pill{
+        margin-top: 1rem;
+    }
+}
+
+.container{
+    max-width: 1200px;
+}
+

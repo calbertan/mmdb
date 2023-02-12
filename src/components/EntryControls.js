@@ -22,7 +22,7 @@ const EntryControls = ({manga, type}) => {
               <Button variant="outline-secondary"
               onClick={()=>moveToReadlist(manga)}>Move</Button>{' '}
               <Button variant="outline-danger"
-              onClick={()=>removeFromCompleted(manga.mal_id)}>Remove</Button>{' '}
+              onClick={()=>removeFromCompleted(manga.mal_id)}>Drop</Button>{' '}
             </>
         )}
       </div>

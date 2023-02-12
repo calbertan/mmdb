@@ -7,8 +7,8 @@
 
         img {
             display: block;
-            width: 200px;
-            height: 350px;
+            width: 150px;
+            height: 250px;
             object-fit: cover;
             border-radius: 16px;
             box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.15);
@@ -25,10 +25,15 @@
 .result-card .container{
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 .overflow-auto{
     max-height: 150px;
-    max-width: 600px;
+    max-width: 250px;
+}
+
+.info{
+    margin:5px;
 }

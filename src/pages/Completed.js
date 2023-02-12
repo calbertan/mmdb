@@ -1,6 +1,7 @@
 import React, {useContext} from 'react'
 import { GlobalContext } from '../context/GlobalState'
 import EntryCard from '../components/EntryCard'
+import "../Styles/page-layout.scss"
 
 const Completed = () => {
   const {completed} = useContext(GlobalContext)

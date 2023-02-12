@@ -1,7 +1,8 @@
 import React, {useContext} from 'react'
 import EntryCard from '../components/EntryCard';
 import { GlobalContext } from '../context/GlobalState'
-import "../Styles/reading.scss"
+import "../Styles/page-layout.scss"
+
 
 const Readlist = () => {
   const {readlist} = useContext(GlobalContext);

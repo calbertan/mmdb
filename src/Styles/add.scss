@@ -10,6 +10,8 @@
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
+    max-width: 1500px;
+    margin:auto
 }
 
 div > ul{
@@ -30,4 +32,13 @@ input {
     background-color: var(--mainColor);
     color: var(--textColor);
     font-size: 1.25rem;
+}
+
+.results {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    padding:0px;
+
 }
