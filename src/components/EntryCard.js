@@ -7,7 +7,7 @@ const EntryCard = ({manga, type}) => {
         <div className="entry-card">
             <div className="container">
                 <div className="poster">
-                    <img src={manga.images.jpg.image_url} />
+                    <img src={manga.images.jpg.image_url}/>
                     <EntryControls type={type} manga={manga} key={manga.mal_id}/>
                 </div>
                 <div className='title'>{manga.title}</div>
