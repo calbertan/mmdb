@@ -43,7 +43,7 @@ const Add = () => {
   
   return (
     <div className='add-page'>
-      <div className='container'>
+      <div className='page-container'>
         <div className='add-content'>
           <div className='input-wrapper'>
             <input 

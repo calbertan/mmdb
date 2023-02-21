@@ -7,7 +7,7 @@ const Completed = () => {
   const {completed} = useContext(GlobalContext)
   return (
     <div className='copmleted-page'>
-      <div className='container'>
+      <div className='page-container'>
         <div className='header'>
           <h1 className='heading'>Completed Series</h1>
           <span className='count-pill'>{completed.length} Series Completed</span>

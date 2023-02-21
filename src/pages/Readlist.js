@@ -8,7 +8,7 @@ const Readlist = () => {
   const {readlist} = useContext(GlobalContext);
   return (
     <div className='read-page'>
-      <div className='container'>
+      <div className='page-container'>
         <div className='header'>
           <h1 className='heading'>My Reading List</h1>
         </div>
