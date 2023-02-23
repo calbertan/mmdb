@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const EntryControls = ({manga, type}) => {
   const {removeFromReadlist, completedReading, moveToReadlist, removeFromCompleted} = useContext(GlobalContext);
   return (
+    
     <div>
       <div className='inner-card-controls'>
         {type === 'readinglist' && (
