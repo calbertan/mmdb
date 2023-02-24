@@ -1,12 +1,26 @@
-import {useRef, useState} from "react"
+import {useRef, useState, useContext} from "react"
 import {Navbar, Container, Nav, Modal, Button, Form} from 'react-bootstrap'
 import "../Styles/header.scss"
+import {GlobalContext} from '../context/GlobalState'
 
 function Header(){
+    const{toggleLogin} = useContext(GlobalContext) 
     const [modal, setModal] = useState(false)
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+    const [input, setInput] = useState({
+        username: '',
+        password: '',
+        confirmPassword: ''
+      });
+     
+    const [error, setError] = useState({
+        username: '',
+        password: '',
+        confirmPassword: ''
+    })
+    const [list, setList] = useState('');
+    const [login, setLogin] = useState(true);
     const navRef = useRef();
+
 
     const showHeader = () => {
         navRef.current.classList.toggle("responsive_nav")
@@ -16,18 +30,93 @@ function Header(){
         setModal(!modal)
     }
 
-    const usernameHandler = (event) => {
-        setUsername(event.target.value);
-    };
+    const onInputChange = e => {
+        const {name, value} = e.target
+        setInput(prev => ({
+            ...prev,
+            [name]: value
+        }))
+        validateInput(e)
+    }
+   
+    const validateInput = e => {
+        let {name, value} = e.target;
+        setError(prev => {
+            const stateObj = { 
+                ...prev, 
+                [name]: ""
+            }
 
-    const passwordHandler = (event) => {
-        setPassword(event.target.value);
-    };
-    
+            switch(name){
+                case "username":
+                    if (!value) {
+                        stateObj[name] = "Please enter Username.";
+                    }
+                    break;
+            
+                case "password":
+                    if (!value) {
+                        stateObj[name] = "Please enter Password.";
+                    }
+                    if (value !== input.confirmPassword) {
+                        stateObj["confirmPassword"] = "Password does not match.";
+                    }
+                    break;
+            
+                case "confirmPassword":
+                    if (input.password && value !== input.password) {
+                        stateObj[name] = "Password does not match.";
+                    }
+                    break;
+            
+                default:
+                    break;
+            }
+            return stateObj
+        })
+    }
+
+
     const submitHandler = (event) => {
         event.preventDefault();
 
-        return alert(username);
+        if(login){
+            login = false;
+        }
+
+        fetch("http://localhost:4000/signup",{
+            method:"POST",
+            crossDomain: true,
+            headers:{
+                "Content-Type":"application/json",
+                Accept:"application/json".replace,
+                "Access-Control-Allow-Origin":"*",
+            },
+            body: JSON.stringify({
+                username: input.username,
+                password: input.password,
+                list,
+                list,
+            }),
+            
+        }).then((res)=>res.json()).then((data) => {
+            toggleModal()
+            toggleLogin(input.username)
+            
+        })
+        
+    }
+
+    const handleLogin = () => {
+        if(!login){
+            setLogin(true);
+        }
+    }
+
+    const handleSignup = (event) => {
+        if(input){
+            setLogin(false);
+        }
     }
 
     return (
@@ -49,7 +138,10 @@ function Header(){
 
             <Modal show={modal} onHide={toggleModal}>
                 <Modal.Header closeButton>
-                    <Modal.Title className="ms-auto">Log in</Modal.Title>
+                    {login ? 
+                        <Modal.Title className="ms-auto">Log in</Modal.Title> :
+                        <Modal.Title className="ms-auto">Sign up</Modal.Title>
+                    }
                 </Modal.Header>
                 <Modal.Body classN>
                 <Form onSubmit={submitHandler}>
@@ -58,9 +150,12 @@ function Header(){
                         <Form.Control 
                             type="text" 
                             placeholder="Username" 
-                            value={username}
-                            onChange={usernameHandler}
+                            name="username"
+                            value={input.username}
+                            onChange={onInputChange}
+                            onBlur={validateInput}
                         />
+                        {error.username && <span className='err'>{error.username}</span>}
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -68,18 +163,60 @@ function Header(){
                         <Form.Control 
                             type="password" 
                             placeholder="Password" 
-                            value={password}
-                            onChange={passwordHandler}
+                            name="password"
+                            value={input.password}
+                            onChange={onInputChange}
+                            onBlur={validateInput}
                         />
+                        {error.password && <span className='err'>{error.password}</span>}
                     </Form.Group>
-                    <div className="form-btn">
-                        <Button variant="primary" type="submit">
-                            Login
-                        </Button>
-                        <Button variant="secondary" type="submit">
-                            Sign up
-                        </Button>
-                    </div>
+                    {!login &&
+                        <div className="signup">
+                            <Form.Group className="mb-3" controlId="formBasicPassword">
+                                <Form.Label>Confirm password: </Form.Label>
+                                <Form.Control 
+                                    type="password" 
+                                    placeholder="Confirm Password"
+                                    name="confirmPassword"
+                                    value={input.confirmPassword}
+                                    onChange={onInputChange}
+                                    onBlur={validateInput}
+                                />
+                                {error.confirmPassword && <span className='err'>{error.confirmPassword}</span>}
+                            </Form.Group>
+                            <div className="form-btn">
+                                <Button 
+                                    variant="secondary" 
+                                    onClick={submitHandler}
+                                    disabled={
+                                        error.confirmPassword ||
+                                        error.password ||
+                                        error.username}
+                                >
+                                    Sign up
+                                </Button>
+                                <Button variant="primary" onClick={handleLogin}>
+                                    Login
+                                </Button>
+                             </div>
+                        </div>
+                    }
+                    {login &&
+                        <div className="form-btn">
+                            <Button 
+                                variant="primary" 
+                                onClick={handleLogin}
+                                disabled={
+                                    error.password ||
+                                    error.username}
+                            >
+                                Login
+                            </Button>
+                            <Button variant="secondary" onClick={handleSignup}>
+                                Sign up
+                            </Button>
+                        </div>  
+                    }
                 </Form>
                 </Modal.Body>
             </Modal>
