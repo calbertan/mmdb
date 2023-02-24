@@ -34,6 +34,26 @@ app.post("/signup", async(req,res)=>{
   }
 })
 
+app.post("/login", async(req,res)=>{
+  const{username, password} = req.body
+
+  const user = await User.findOne({username})
+
+  if(!user){
+    res.json({error:"User not found"})
+  }
+  else if(password == user.password){
+    if(res.status(201)){
+      return res.json({status:"ok"})
+    }
+    else{
+      console.log("??")
+      return res.json({error: "error"})
+    }
+  }
+  return res.json({status:"error", error:"invalid Password"})
+})
+
 app.listen(4000, () =>{
   console.log("server started")
 })

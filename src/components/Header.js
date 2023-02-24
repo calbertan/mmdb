@@ -107,15 +107,63 @@ function Header(){
         
     }
 
-    const handleLogin = () => {
+    const handleLogin = (event) => {
+        event.preventDefault();
+        
         if(!login){
             setLogin(true);
+        }
+        else{
+            fetch("http://localhost:4000/login",{
+                method:"POST",
+                crossDomain: true,
+                headers:{
+                    "Content-Type":"application/json",
+                    Accept:"application/json".replace,
+                    "Access-Control-Allow-Origin":"*",
+                },
+                body: JSON.stringify({
+                    username: input.username,
+                    password: input.password,
+                }),
+                
+            }).then((res)=>res.json()).then((data) => {
+                console.log(data)
+                toggleModal()
+                toggleLogin(input.username)
+                
+            })
+            console.log("yo")
         }
     }
 
     const handleSignup = (event) => {
-        if(input){
+        event.preventDefault();
+
+        if(login){
             setLogin(false);
+        }
+        else{
+            fetch("http://localhost:4000/signup",{
+                method:"POST",
+                crossDomain: true,
+                headers:{
+                    "Content-Type":"application/json",
+                    Accept:"application/json".replace,
+                    "Access-Control-Allow-Origin":"*",
+                },
+                body: JSON.stringify({
+                    username: input.username,
+                    password: input.password,
+                    list,
+                    list,
+                }),
+                
+            }).then((res)=>res.json()).then((data) => {
+                toggleModal()
+                toggleLogin(input.username)
+                
+            })
         }
     }
 
@@ -144,7 +192,7 @@ function Header(){
                     }
                 </Modal.Header>
                 <Modal.Body classN>
-                <Form onSubmit={submitHandler}>
+                <Form>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Username:</Form.Label>
                         <Form.Control 
@@ -187,7 +235,7 @@ function Header(){
                             <div className="form-btn">
                                 <Button 
                                     variant="secondary" 
-                                    onClick={submitHandler}
+                                    onClick={handleSignup}
                                     disabled={
                                         error.confirmPassword ||
                                         error.password ||
