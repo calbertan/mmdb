@@ -32,11 +32,16 @@
     color:#29335C;
     font-weight: bold;
     display: -webkit-box;
+    font-size:18px;
     max-width: 200px;
     display: inline-block;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+
+    &:hover{
+        color:#4e62b1;
+    }
 }
 
 .inner-card-controls{
@@ -82,7 +87,7 @@
             transform: translate(-112%, 200%);
             opacity:0;
         } 
-        .container:hover .inner-card-controls{   
+        .poster:hover .inner-card-controls{   
             opacity: 1;
         }
     }

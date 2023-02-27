@@ -8,7 +8,7 @@ app.use(express.json())
 app.use(cors())
 
 mongoose.connect(mongoUrl, {useNewUrlParser: true})
-  .then(()=>console.log("memek"))
+  .then(()=>console.log("connected to mongodb"))
   .catch(e=>console.log(e)) 
 
 require("./userDetails")
@@ -40,9 +40,9 @@ app.post("/login", async(req,res)=>{
   const user = await User.findOne({username})
 
   if(!user){
-    res.json({error:"User not found"})
+    return res.json({error:"User not found"})
   }
-  else if(password == user.password){
+  if(password == user.password){
     if(res.status(201)){
       return res.json({status:"ok"})
     }
@@ -51,8 +51,26 @@ app.post("/login", async(req,res)=>{
       return res.json({error: "error"})
     }
   }
-  return res.json({status:"error", error:"invalid Password"})
+  else{
+    return res.json({error:"Password does not match"})
+  } 
 })
+
+app.post("/reading", async(req,res)=>{
+  const{username, manga} = req.body
+  const user = await User.findOne({username})
+  console.log(user)
+  if(!user){
+    console.log("not")
+    return res.json({error:"User not found"})
+  }
+  else{
+    console.log("here")
+    user.reading.push(manga)
+    return res.json({state:"pushed succesfully"})
+  } 
+})
+
 
 app.listen(4000, () =>{
   console.log("server started")

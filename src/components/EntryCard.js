@@ -10,7 +10,7 @@ const EntryCard = ({manga, type}) => {
                     <img src={manga.images.jpg.image_url}/>
                     <EntryControls type={type} manga={manga} key={manga.mal_id}/>
                 </div>
-                <div className='title'>{manga.title}</div>
+                <div className='title' onClick={()=>window.open(manga.url)}>{manga.title}</div>
             </div>
         </div>
     )

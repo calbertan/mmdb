@@ -19,6 +19,7 @@ function Header(){
     })
     const [list, setList] = useState('');
     const [login, setLogin] = useState(true);
+    const [validUser, setValidUser] = useState(true)
     const navRef = useRef();
 
 
@@ -128,9 +129,14 @@ function Header(){
                 }),
                 
             }).then((res)=>res.json()).then((data) => {
-                console.log(data)
-                toggleModal()
-                toggleLogin(input.username)
+                if(data.status == "ok"){
+                    toggleModal()
+                    toggleLogin(input.username)
+                    setValidUser(true)
+                }
+                else{
+                    setValidUser(false)
+                }
                 
             })
             console.log("yo")
@@ -251,6 +257,7 @@ function Header(){
                     }
                     {login &&
                         <div className="form-btn">
+                            {!validUser && <span className='err'>Incorrect user/password</span>} 
                             <Button 
                                 variant="primary" 
                                 onClick={handleLogin}

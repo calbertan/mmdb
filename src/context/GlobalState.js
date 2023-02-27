@@ -9,6 +9,7 @@ const initialState = {
     ? JSON.parse(localStorage.getItem('completed')) : [],
     username: localStorage.getItem('username') 
     ? localStorage.getItem('username') : "",
+    
 };
 
 //create context
@@ -54,7 +55,7 @@ export const GlobalProvider = props => {
         <GlobalContext.Provider value={
             {readlist:state.readlist, 
             completed: state.completed,
-            username: state.loggedin,
+            username: state.username,
             addToReadlist,
             removeFromReadlist,
             completedReading,
