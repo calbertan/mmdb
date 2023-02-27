@@ -34,6 +34,12 @@ export default (state, action) => {
                 ...state,
                 completed: state.completed.filter(manga => manga.mal_id !== action.payload),
             }
+
+        case "TOGGLE_LOGIN":
+            return{
+                ...state,
+                username: action.payload,
+            }
         default:
             return state;
     }
