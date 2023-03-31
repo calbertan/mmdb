@@ -184,9 +184,9 @@ function Header(){
                     <Nav.Link className="navlist" href="/completed">Completed</Nav.Link>
                     <Nav.Link className="navlist" href="/add">Add +</Nav.Link>
                 </Nav>
-                <Nav className="ms-auto">
+                {/* <Nav className="ms-auto">
                     <button className="btn-signup" onClick={toggleModal}>Log in</button>
-                </Nav>
+                </Nav> */}
                 </Navbar.Collapse>
             </Container>
 
